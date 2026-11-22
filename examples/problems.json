@@ -1,0 +1,35 @@
+[
+  {
+    "id":"repair","title":"Technician assignment","arabic":"تعيين تقنيي الصيانة","group":"Certainty","mode":"assignment","course":1,"icon":"wrench","summary":"Assign exactly one technician to each of three machines and minimize total repair time.","task":"Which feasible assignment has the minimum total time?","times":[[3,7,4],[4,6,6],[3,8,5]]
+  },
+  {
+    "id":"staffing","title":"24-hour workforce planning","arabic":"تخطيط القوى العاملة","group":"Certainty","mode":"staffing","course":2,"icon":"clock","summary":"Schedule eight-hour shifts over six four-hour periods to meet staffing requirements with the fewest workers.","task":"What is the minimum number of workers under the corrected coverage model?","demands":[6,10,4,2,5,9]
+  },
+  {
+    "id":"investment","title":"Investment under variable demand","arabic":"الاستثمار تحت طلب متغير","group":"Uncertainty","mode":"uncertainty","course":3,"icon":"chart","summary":"Choose among three investments without measured probabilities for low, medium, or high demand.","task":"Which option is optimal under Laplace’s equally weighted rule?","matrix":{"alternatives":["a1 · Conservative","a2 · Balanced","a3 · Growth"],"states":["Low demand","Medium demand","High demand"],"values":[[35,410,660],[0,450,750],[-115,410,760]],"objective":"profit"},"alpha":0.5,"criterion":"laplace"
+  },
+  {
+    "id":"oil","title":"Oil exploration or sell rights","arabic":"التنقيب أو بيع الحقوق","group":"Risk","mode":"risk","course":4,"icon":"land","summary":"A petroleum company can drill for oil or sell its exploration rights for a fixed payment.","task":"Which alternative maximizes expected monetary value?","matrix":{"alternatives":["Drill","Sell rights"],"states":["Oil found","No oil"],"values":[[200000,-20000],[1000,1000]],"objective":"profit"},"probabilities":[0.25,0.75]
+  },
+  {
+    "id":"spares","title":"Purchasing spare parts","arabic":"شراء قطع الغيار","group":"Risk","mode":"poisson","course":5,"icon":"boxes","summary":"Decide how many spares to buy upfront when machine failures follow a Poisson model.","task":"How many spares minimize expected cost under the conditional 0–6 model?","rate":2,"cutoff":6,"upfront":10000,"replacement":40000
+  },
+  {
+    "id":"information","title":"Pricing perfect information","arabic":"قيمة المعلومة الكاملة","group":"Risk","mode":"risk","course":6,"icon":"info","summary":"Compare two profit alternatives and calculate the highest break-even price for a perfect forecast.","task":"What is the expected value of perfect information?","matrix":{"alternatives":["a1","a2"],"states":["e1","e2"],"values":[[-5,8],[10,2]],"objective":"profit"},"probabilities":[0.4,0.6],"criterion":"evpi"
+  },
+  {
+    "id":"production","title":"Seasonal production planning","arabic":"تخطيط الإنتاج الموسمي","group":"Risk","mode":"risk","icon":"boxes","summary":"Balance production margins and unsold inventory against three demand forecasts. Payoffs are in thousands.","task":"What production plan maximizes expected profit?","matrix":{"alternatives":["Small batch","Standard batch","Large batch"],"states":["Weak demand","Normal demand","Strong demand"],"values":[[22,29,29],[8,48,56],[-18,40,92]],"objective":"profit"},"probabilities":[0.25,0.5,0.25]
+  },
+  {
+    "id":"expansion","title":"Staged business expansion","arabic":"توسع الأعمال المرحلي","group":"Trees","mode":"tree","icon":"tree","summary":"Launch immediately, run an eight-unit pilot and adapt to its result, or keep the current business. Values are in thousands.","task":"Which initial branch of the tree has the highest expected profit?","matrix":{"alternatives":["Immediate launch","Keep current business"],"states":["Strong market","Weak market"],"values":[[110,-35],[18,18]],"objective":"profit"},"probabilities":[0.55,0.45],"tree":{"root":"root","nodes":[{"id":"root","name":"Growth decision","type":"decision","branches":[{"to":"pilot","label":"Pilot first","immediate":-8},{"to":"direct","label":"Launch now","immediate":0},{"to":"stay","label":"Keep current","immediate":0}]},{"id":"pilot","name":"Pilot result","type":"chance","branches":[{"to":"positive","label":"Encouraging","probability":0.55,"immediate":0},{"to":"negative","label":"Weak","probability":0.45,"immediate":0}]},{"id":"direct","name":"Market response","type":"chance","branches":[{"to":"strong","label":"Strong","probability":0.55,"immediate":0},{"to":"weak","label":"Weak","probability":0.45,"immediate":0}]},{"id":"stay","name":"Current business","type":"terminal","payoff":18},{"id":"positive","name":"After good pilot","type":"decision","branches":[{"to":"rollout","label":"Roll out","immediate":0},{"to":"license","label":"License","immediate":0}]},{"id":"negative","name":"After weak pilot","type":"decision","branches":[{"to":"pause","label":"Pause","immediate":0},{"to":"niche","label":"Target niche","immediate":0}]},{"id":"strong","name":"Strong sales","type":"terminal","payoff":110},{"id":"weak","name":"Weak sales","type":"terminal","payoff":-35},{"id":"rollout","name":"Rollout profit","type":"terminal","payoff":95},{"id":"license","name":"Licensing profit","type":"terminal","payoff":45},{"id":"pause","name":"Pause profit","type":"terminal","payoff":18},{"id":"niche","name":"Niche profit","type":"terminal","payoff":12}]}
+  },
+  {
+    "id":"projects","title":"Choose an infrastructure project","arabic":"اختيار مشروع بنية تحتية","group":"Certainty","mode":"certainty","icon":"land","summary":"Budget a procurement project after the contracting regime is confirmed. Costs are in thousands.","task":"Which project is least expensive under the confirmed fixed-price regime?","matrix":{"alternatives":["Retrofit","New facility","Lease space"],"states":["Fixed price","Indexed price"],"values":[[64,72],[82,104],[58,78]],"objective":"cost"},"state":0
+  },
+  {
+    "id":"farming","title":"Selecting a crop for the season","arabic":"اختيار محصول الموسم","group":"Uncertainty","mode":"uncertainty","icon":"leaf","summary":"Choose a crop using worst-case profit when seasonal rain probabilities are unavailable.","task":"Which crop wins under the pessimistic Wald criterion?","matrix":{"alternatives":["Barley","Maize","Mixed crops"],"states":["Dry","Typical","Wet"],"values":[[32,42,43],[-10,61,88],[24,50,64]],"objective":"profit"},"criterion":"wald","alpha":0.5
+  },
+  {
+    "id":"diagnostic","title":"Equipment diagnostic information","arabic":"المعلومات التشخيصية للمعدات","group":"Bayesian","mode":"bayes","icon":"flask","summary":"Update the probability of a machine fault after a sensor test and compare the value of testing with perfect information.","task":"What is the gross value of the sensor reading before paying for the sample?","matrix":{"alternatives":["Service now","Keep running"],"states":["Fault","Sound"],"values":[[40,40],[140,0]],"objective":"cost"},"probabilities":[0.25,0.75],"evidence":["Alert","Clear"],"likelihoods":[[0.9,0.12],[0.1,0.88]],"samplePrice":5
+  }
+]
