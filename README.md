@@ -56,3 +56,14 @@ python -m pytest
 ```
 
 **Note:** The Streamlit application does not require Node.js or PostgreSQL.
+
+
+
+
+
+One Windows-specific note: If PowerShell blocks virtual environment activation, You can run:
+```
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
