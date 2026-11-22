@@ -6,8 +6,8 @@
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-cd YOUR_REPOSITORY
+git clone https://github.com/ismailsadouki/interactive-decision-analysis-platform.git
+cd interactive-decision-analysis-platform
 ```
 
 ### 2. Create a virtual environment
